@@ -50,7 +50,13 @@
                             @csrf
 
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                              
+                              <div class="form-group col-md-4">
+                                <label for="date">Date</label>
+                                  <input type="date" name="date" value="{{ $editData->date }}" class="form-control">
+                              </div>
+                              
+                              <div class="form-group col-md-4">
                                     <label for="user_type">User Role</label>
                                         <select name="user_type" id="user_type" class="form-control">
                                             <option value="">Select Role</option>
@@ -75,7 +81,7 @@
                                     </font>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6" style="padding-top:30px">
                                     <input type="submit" value="Update" class="btn btn-primary">
                                 </div>
                             </div>

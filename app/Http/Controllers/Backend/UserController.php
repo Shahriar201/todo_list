@@ -25,7 +25,7 @@ class UserController extends Controller
         // data validation
         $this->validate($request,[
             'name'=> 'required',
-            'email'=> 'required',
+            'email'=> 'required|unique:users,email',
         ]);
 
         $data = new User();
