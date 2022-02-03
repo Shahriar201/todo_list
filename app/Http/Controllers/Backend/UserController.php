@@ -66,4 +66,20 @@ class UserController extends Controller
 
         return redirect()->route('users.view')->with('success', 'Data deleted successfully');
     }
+
+    public function search(Request $request)
+    {
+        if (empty($request)) {
+
+            $data['allData'] = User::paginate(3);
+
+            return view('backend.user.view-user', $data);
+            
+        } else {
+
+            $data['allData'] = User::where('date', 'like', '%'.$request->search.'%')->paginate(3);
+
+            return view('backend.user.view-user', $data);
+        }
+    }
 }

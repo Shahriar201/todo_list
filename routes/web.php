@@ -31,6 +31,9 @@ Route::prefix('users')->group(function () {
     Route::get('/edit/{id}', 'Backend\UserController@edit')->name('users.edit');
     Route::post('/update/{id}', 'Backend\UserController@update')->name('users.update');
     Route::post('/delete', 'Backend\UserController@delete')->name('users.delete');
+
+    //Search route
+    Route::get('/search', 'Backend\UserController@search')->name('users.search');
 });
 
 //Profile route
