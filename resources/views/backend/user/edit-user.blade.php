@@ -54,8 +54,8 @@
                                     <label for="user_type">User Role</label>
                                         <select name="user_type" id="user_type" class="form-control">
                                             <option value="">Select Role</option>
-                                            <option value="Super Admin" {{ ($editData->user_type=="Super Admin")?"selected":"" }}>Super Admin</option>
-                                            <option value="User" {{ ($editData->User_type=="user")?"selected":"" }}>User</option>
+                                            <option value="Super Admin" {{ ($editData->user_type=="Super Admin") ? "selected" : "" }}>Super Admin</option>
+                                            <option value="User" {{ ($editData->user_type=="User") ? "selected" : "" }}>User</option>
                                         </select>
                                </div>
 

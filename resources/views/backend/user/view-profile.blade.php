@@ -49,17 +49,13 @@
                   <p class="text-muted text-center">{{ $user->address }}</p>
   
                   <table width="100%" class="table table-bordered">
-                      <tr>
-                          <td>Mobile No</td>
-                          <td>{{ $user->mobile }}</td>
-                      </tr>
+                      {{-- <tr>
+                          <td>Date</td>
+                          <td>{{ date('d-m-Y', strtotime($user->date)) }}</td>
+                      </tr> --}}
                       <tr>
                           <td>Email</td>
                           <td>{{ $user->email }}</td>
-                      </tr>
-                      <tr>
-                          <td>Gender</td>
-                          <td>{{ $user->gender }}</td>
                       </tr>
                   </table>
   

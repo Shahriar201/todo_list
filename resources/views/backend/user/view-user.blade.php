@@ -29,7 +29,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            
+
             <!-- Main row -->
             <div class="row">
                 <!-- Left col -->
@@ -49,6 +49,7 @@
                                 <thead>
                                     <tr>
                                         <th>SL.</th>
+                                        <th>Date</th>
                                         <th>Role</th>
                                         <th>Name</th>
                                         <th>Email</th>
@@ -61,6 +62,7 @@
 
                                     <tr class="{{ $user->id }}">
                                         <td>{{ $key+1 }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($user->date)) }}</td>
                                         <td>{{ $user->user_type }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
@@ -77,12 +79,12 @@
                                             </a>
                                         </td>
                                     </tr>
-                                        
+
                                     @endforeach
-                                    
+
                                 </tbody>
                             </table>
-                            
+
                         </div>
                         <!-- /.card-body -->
                     </div>

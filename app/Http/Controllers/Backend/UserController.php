@@ -25,10 +25,11 @@ class UserController extends Controller
         // data validation
         $this->validate($request,[
             'name'=> 'required',
-            'email'=> 'required|unique:users,email',
+            'email'=> 'required',
         ]);
 
         $data = new User();
+        $data->date = date('Y-m-d', strtotime($request->date));
         $data->user_type = $request->user_type;
         $data->name = $request->name;
         $data->email = $request->email;
@@ -46,6 +47,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         $data = User::find($id);
+        $data->date = date('Y-m-d', strtotime($request->date));
         $data->user_type = $request->user_type;
         $data->name = $request->name;
         $data->email = $request->email;

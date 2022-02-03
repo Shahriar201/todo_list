@@ -66,31 +66,6 @@
                                     </font>
                                 </div>
 
-                                <div class="form-group col-md-4">
-                                    <label for="mobile">Mobile</label>
-                                    <input type="text" name="mobile" value="{{ $editData->mobile }}" class="form-control">
-                                    <font style="color:red">
-                                        {{($errors->has('mobile'))?($errors->first('mobile')):''}}
-                                    </font>
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="address">Address</label>
-                                    <input type="text" name="address" value="{{ $editData->address }}" class="form-control">
-                                    <font style="color:red">
-                                        {{($errors->has('address'))?($errors->first('address')):''}}
-                                    </font>
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="user_type">Gender</label>
-                                        <select name="gender" id="gender" class="form-control">
-                                            <option value="">Gender</option>
-                                            <option value="Male" {{ ($editData->gender=="Male")?"selected":"" }}>Male</option>
-                                            <option value="Female" {{ ($editData->gender=="Female")?"selected":"" }}>Female</option>
-                                        </select>
-                               </div> 
-
                                <div class="form-group col-md-4">
                                     <label for="image">Image</label>
                                     <input type="file" name="image" class="form-control" id="image">

@@ -51,6 +51,11 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
+                                    <label for="date">Date</label>
+                                        <input type="date" name="date" class="form-control">
+                               </div>
+
+                               <div class="form-group col-md-4">
                                     <label for="user_type">User Role</label>
                                         <select name="user_type" id="user_type" class="form-control">
                                             <option value="">Select Role</option>
