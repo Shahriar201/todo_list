@@ -38,8 +38,13 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>User List
-                                <a class="btn btn-success float-right btn-sm" href="{{ route('users.add') }}">
-                                    <i class="fa fa-plus-circle"></i>Add User</a>
+                                
+                                {{-- Set role for the user --}}
+                                @role('writer')
+                                    <a class="btn btn-success float-right btn-sm" href="{{ route('users.add') }}">
+                                        <i class="fa fa-plus-circle"></i>Add User</a>
+                                @endrole
+
                             </h3>
 
                             {{-- Search option --}}
@@ -61,7 +66,11 @@
                                     <th>Role</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    
+                                    @hasanyrole('admin|editor')
+                                        <th>Action</th>
+                                    @endhasanyrole()
+
                                 </tr>
 
                                 @foreach ($allData as $key => $user)
@@ -72,11 +81,19 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a title="Edit" id="edit" class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-edit"></i>
-                                            </a>
+                                            
+                                            @role('editor')
 
-                                            <a title="Delete" id="delete" class="btn btn-danger btn-sm" href="{{ route('users.delete', $user->id) }}"> <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a title="Edit" id="edit" class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-edit"></i>
+                                                </a>             
+
+                                            @endrole()
+
+                                            @role('admin')
+                                                <a title="Delete" id="delete" class="btn btn-danger btn-sm" href="{{ route('users.delete', $user->id) }}"> <i class="fa fa-trash"></i>
+                                                </a>
+                                            @endrole
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

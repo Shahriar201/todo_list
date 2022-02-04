@@ -27,16 +27,20 @@ class HomeController extends Controller
     {
 
         // $role = Role::create(['name' => 'writer']);
+        // $role = Role::create(['name' => 'editor']);
+        // $role = Role::create(['name' => 'admin']);
 
         // Permission::create(['name' => 'create']);
         // Permission::create(['name' => 'edit']);
         // Permission::create(['name' => 'delete']);
 
-        // $role = Role::findById(1);
+        // $role = Role::findById(3);
 
         // $permission1 = Permission::findById(1);
         // $permission2 = Permission::findById(2);
         // $permission3 = Permission::findById(3);
+
+        // $role->givePermissionTo($permission1);
 
         // $role->givePermissionTo([$permission1, $permission2, $permission3]);
 
@@ -46,15 +50,16 @@ class HomeController extends Controller
 
         // $permission = Permission::create(['name' => 'edit post']);
 
-        $role = Role::findById('2');
+        // $role = Role::findById('2');
 
-        $permission = Permission::findById('4');
+        // $permission = Permission::findById('4');
 
-        $role->givePermissionTo($permission);
+        // $role->givePermissionTo($permission);
 
-        // auth()->user()->givePermissionTo('edit post');
 
-        // auth()->user()->assignRole(['writer']);
+        auth()->user()->assignRole(['writer']);
+
+        // auth()->user()->assignRole(['admin']);
 
         // return auth()->user()->getAllPermissions();
 
