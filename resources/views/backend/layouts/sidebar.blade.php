@@ -11,41 +11,27 @@
 
             <li class="nav-item has-treeview {{ ($prefix=='/users')?'menu-open':'' }}">
                 <a href="" class="nav-link">
-                    <i class="nav-icon fa fa-user"></i>
+                    <i class="nav-icon fas fa-copy"></i>
                     <p>
-                        User Management
+                        Manage User
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ route('users.view') }}" class="nav-link {{ ($route=='users.view')?'active':'' }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>View Users</p>
+                            <p>View User</p>
                         </a>
                     </li>
-
-                </ul>
-                
-                <ul class="nav nav-treeview">
+                    
                     <li class="nav-item">
-                        <a href="{{ route('permission.view') }}" class="nav-link {{ ($route=='permission.view')?'active':'' }}">
+                        <a href="{{ route('permissions.view') }}" class="nav-link {{ ($route=='permissions.view')?'active':'' }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Permission</p>
+                            <p>View Permissions</p>
                         </a>
                     </li>
-
-                </ul>
-                
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('permission.view') }}" class="nav-link {{ ($route=='permission.view')?'active':'' }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Role</p>
-                        </a>
-                    </li>
-
+                    
                 </ul>
             </li>
 

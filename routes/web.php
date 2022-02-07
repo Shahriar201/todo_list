@@ -32,9 +32,13 @@ Route::prefix('users')->group(function () {
     Route::post('/update/{id}', 'Backend\UserController@update')->name('users.update');
     Route::post('/delete', 'Backend\UserController@delete')->name('users.delete');
 
-    //Permission and Role routes
-    Route::get('/view-permission', 'Backend\UserController@viewPermission')->name('permission.view');
-    Route::get('/view-role', 'Backend\UserController@viewRole')->name('role.view');
+    //Permission routes
+    Route::get('/view-permission', 'PermissionController@viewPermission')->name('permissions.view');
+    Route::get('/add-permission', 'PermissionController@addPermission')->name('permissions.add');
+    Route::post('/store-permission', 'PermissionController@storePermission')->name('permissions.store');
+    Route::get('/edit-permission/{id}', 'PermissionController@editPermission')->name('permissions.edit');
+    Route::post('/update-permission/{id}', 'PermissionController@updatePermission')->name('permissions.update');
+    Route::post('/delete-permission', 'PermissionController@deletePermission')->name('permissions.delete');
 
     //Search route
     Route::get('/search', 'Backend\UserController@search')->name('users.search');
