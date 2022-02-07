@@ -40,6 +40,15 @@ Route::prefix('users')->group(function () {
     Route::post('/update-permission/{id}', 'PermissionController@updatePermission')->name('permissions.update');
     Route::post('/delete-permission', 'PermissionController@deletePermission')->name('permissions.delete');
 
+    //Role routes
+    Route::get('/view-role', 'RoleController@viewRole')->name('roles.view');
+    Route::get('/add-role', 'RoleController@addRole')->name('roles.add');
+    Route::post('/store-role', 'RoleController@storeRole')->name('roles.store');
+    Route::get('/edit-role/{id}', 'RoleController@editRole')->name('roles.edit');
+    Route::post('/update-role/{id}', 'RoleController@updateRole')->name('roles.update');
+    Route::post('/delete-role', 'RoleController@deleteRole')->name('roles.delete');
+
+
     //Search route
     Route::get('/search', 'Backend\UserController@search')->name('users.search');
 });

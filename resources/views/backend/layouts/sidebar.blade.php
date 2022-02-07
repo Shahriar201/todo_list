@@ -32,6 +32,13 @@
                         </a>
                     </li>
                     
+                    <li class="nav-item">
+                        <a href="{{ route('roles.view') }}" class="nav-link {{ ($route=='roles.view')?'active':'' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>View Roles</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </li>
 
