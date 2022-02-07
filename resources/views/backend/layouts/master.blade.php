@@ -289,7 +289,7 @@
         });
     </script>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(function(){
             $(document).on('click', '#delete', function(e){
                 e.preventDefault();
@@ -315,10 +315,10 @@
             });
         });
 
-    </script>
+    </script> --}}
 
     {{-- Another delete sweet alert by post method --}}
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
             $(document).on('click', '#delete', function() {
                 var actionTo = $(this).attr('href');
@@ -363,7 +363,7 @@
             })
         })
 
-    </script> --}}
+    </script>
 
     {{-- Approved Sweet Alert --}}
     <script type="text/javascript">

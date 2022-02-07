@@ -53,6 +53,10 @@
                                 <div class="form-group col-md-4">
                                     <label for="date">Date</label>
                                         <input type="date" name="date" class="form-control">
+                                        
+                                        <font style="color: red">
+                                          {{ ($errors->has('date')) ? ($errors->first('date')) : '' }}
+                                        </font>
                                </div>
 
                                <div class="form-group col-md-4">
@@ -62,21 +66,27 @@
                                             <option value="Super Admin">Super Admin</option>
                                             <option value="User">User</option>
                                         </select>
+
+                                        <font style="color: red">
+                                          {{ ($errors->has('user_type')) ? ($errors->first('user_type')) : '' }}
+                                        </font>
                                </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" class="form-control">
+                                    
                                     <font style="color:red">
-                                      {{($errors->has('name'))?($errors->first('name')):''}}
+                                      {{($errors->has('name')) ? ($errors->first('name')) : ''}}
                                   </font>
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control">
+                                    
                                     <font style="color:red">
-                                        {{($errors->has('email'))?($errors->first('email')):''}}
+                                        {{ ($errors->has('email')) ? ($errors->first('email')) : '' }}
                                     </font>
                                 </div>
 
@@ -121,6 +131,9 @@
 
       $('#myForm').validate({
         rules: {
+          date: {
+            required: true,
+          },
           name: {
             required: true,
           },

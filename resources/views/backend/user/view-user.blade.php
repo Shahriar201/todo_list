@@ -74,7 +74,7 @@
                                 </tr>
 
                                 @foreach ($allData as $key => $user)
-                                    <tr>
+                                    <tr class="{{ $user->id }}">
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ date('d-m-Y', strtotime($user->date)) }}</td>
                                         <td>{{ $user->user_type }}</td>
@@ -90,7 +90,7 @@
                                             @endrole()
 
                                             @role('admin')
-                                                <a title="Delete" id="delete" class="btn btn-danger btn-sm" href="{{ route('users.delete', $user->id) }}"> <i class="fa fa-trash"></i>
+                                                <a title="Delete" id="delete" class="btn btn-danger btn-sm" href="{{ route('users.delete') }}" data-token="{{ csrf_token() }}" data-id="{{ $user->id }}"> <i class="fa fa-trash"></i>
                                                 </a>
                                             @endrole
                                             

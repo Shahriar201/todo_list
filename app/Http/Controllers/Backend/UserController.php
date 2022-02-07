@@ -24,8 +24,11 @@ class UserController extends Controller
 
         // data validation
         $this->validate($request,[
-            'name'=> 'required',
-            'email'=> 'required|unique:users,email',
+            'date'          => 'required|date',
+            'user_type'     => 'required',
+            'name'          => 'required',
+            'email'         => 'required|email|unique:users,email',
+            'password'      => 'required|min:6',
         ]);
 
         $data = new User();
@@ -46,7 +49,16 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = User::find($id);
+
+        $data = User::findOrFail($id);
+
+        $this->validate($request,[
+            'date'          => 'required|date',
+            'user_type'     => 'required',
+            'name'          => 'required',
+            'email'         => 'required|email|unique:users,email,'.$data->id,
+        ]);
+
         $data->date = date('Y-m-d', strtotime($request->date));
         $data->user_type = $request->user_type;
         $data->name = $request->name;
@@ -59,9 +71,6 @@ class UserController extends Controller
 
     public function delete(Request $request){
         $user = User::find($request->id);
-        if(file_exists('public/upload/user_images/' . $user->image) AND ! empty($user->image)){
-            unlink('public/upload/user_images/' . $user->image);
-        }
         $user->delete();
 
         return redirect()->route('users.view')->with('success', 'Data deleted successfully');

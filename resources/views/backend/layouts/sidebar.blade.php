@@ -13,15 +13,36 @@
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
-                        Manage User
+                        User Management
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
+
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ route('users.view') }}" class="nav-link {{ ($route=='users.view')?'active':'' }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>View User</p>
+                            <p>View Users</p>
+                        </a>
+                    </li>
+
+                </ul>
+                
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('permission.view') }}" class="nav-link {{ ($route=='permission.view')?'active':'' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Permission</p>
+                        </a>
+                    </li>
+
+                </ul>
+                
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('permission.view') }}" class="nav-link {{ ($route=='permission.view')?'active':'' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Role</p>
                         </a>
                     </li>
 
