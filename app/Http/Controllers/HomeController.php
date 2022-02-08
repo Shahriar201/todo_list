@@ -57,7 +57,7 @@ class HomeController extends Controller
         // $role->givePermissionTo($permission);
 
 
-        auth()->user()->assignRole(['writer']);
+        // auth()->user()->assignRole(['writer']);
 
         // auth()->user()->assignRole(['admin']);
 
