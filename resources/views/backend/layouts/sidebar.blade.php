@@ -7,8 +7,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-        {{-- @if(Auth::user()->user_type=='Admin') --}}
-
+        @role('admin')
             <li class="nav-item has-treeview {{ ($prefix=='/users')?'menu-open':'' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -40,10 +39,8 @@
                     </li>
                     
                 </ul>
-            </li>
-
-        {{-- @endif --}}
-            
+            </li>            
+        @endrole
             
         {{-- Profile menu --}}
         <li class="nav-item has-treeview {{ ($prefix=='/profiles')?'menu-open':'' }}">

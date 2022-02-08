@@ -40,10 +40,10 @@
                             <h3>User List
                                 
                                 {{-- Set role for the user --}}
-                                @role('writer')
+                                {{-- @role('writer') --}}
                                     <a class="btn btn-success float-right btn-sm" href="{{ route('users.add') }}">
                                         <i class="fa fa-plus-circle"></i>Add User</a>
-                                @endrole
+                                {{-- @endrole --}}
 
                             </h3>
 
@@ -67,9 +67,9 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     
-                                    @hasanyrole('admin|editor')
+                                    {{-- @hasanyrole('admin|editor') --}}
                                         <th>Action</th>
-                                    @endhasanyrole()
+                                    {{-- @endhasanyrole() --}}
 
                                 </tr>
 
@@ -82,17 +82,17 @@
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             
-                                            @role('editor')
+                                            {{-- @role('editor') --}}
 
                                                 <a title="Edit" id="edit" class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}"> <i class="fa fa-edit"></i>
                                                 </a>             
 
-                                            @endrole()
+                                            {{-- @endrole() --}}
 
-                                            @role('admin')
+                                            {{-- @role('admin') --}}
                                                 <a title="Delete" id="delete" class="btn btn-danger btn-sm" href="{{ route('users.delete') }}" data-token="{{ csrf_token() }}" data-id="{{ $user->id }}"> <i class="fa fa-trash"></i>
                                                 </a>
-                                            @endrole
+                                            {{-- @endrole --}}
                                             
                                         </td>
                                     </tr>

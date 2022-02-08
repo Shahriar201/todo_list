@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         // $user->remember_token  = Srt::random(10);
         $user->save();
 
-        //Create a default role
+        //Create default role
         $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'user']);
     }
 }
