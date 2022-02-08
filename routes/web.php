@@ -57,8 +57,6 @@ Route::group(['middleware' => 'auth'], function() {
         });
     });
 
-    
-
     //Profile route
     Route::prefix('profiles')->group(function(){
         
@@ -68,6 +66,22 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/password/view', 'Backend\ProfileController@passwordView')->name('profiles.password.view');
         Route::post('/password/update', 'Backend\ProfileController@passwordUpdate')->name('profiles.password.update');
         
+    });
+
+    //TodoList route
+    Route::group(['middleware' => ['role:admin|user']], function() {
+
+        Route::prefix('todolists')->group(function() {
+            Route::get('/view', 'Backend\TodolistController@view')->name('todolists.view');
+            Route::get('/add', 'Backend\TodolistController@add')->name('todolists.add');
+            Route::post('/store', 'Backend\TodolistController@store')->name('todolists.store');
+            Route::get('/edit/{id}', 'Backend\TodolistController@edit')->name('todolists.edit');
+            Route::post('/update/{id}', 'Backend\TodolistController@update')->name('todolists.update');
+            Route::post('/delete', 'Backend\TodolistController@delete')->name('todolists.delete');
+
+            // Search route
+            Route::get('/search', 'Backend\TodolistController@search')->name('users.search');
+        });
     });
 
 });

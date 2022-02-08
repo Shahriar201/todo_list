@@ -25,22 +25,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        //----Create Role------//
         // $role = Role::create(['name' => 'writer']);
         // $role = Role::create(['name' => 'editor']);
         // $role = Role::create(['name' => 'admin']);
 
+        //-----Create Permission-----//
         // Permission::create(['name' => 'create']);
         // Permission::create(['name' => 'edit']);
         // Permission::create(['name' => 'delete']);
 
-        // $role = Role::findById(1);
+        //-----Role has Permissions----//
+        // $role = Role::findById(2);
 
         // $permission1 = Permission::findById(1);
         // $permission2 = Permission::findById(2);
         // $permission3 = Permission::findById(3);
 
-        // $role->givePermissionTo($permission1, $permission2, $permission3);
+        // $role->givePermissionTo($permission1);
 
         // $role->givePermissionTo([$permission1, $permission2, $permission3]);
 
@@ -52,12 +54,16 @@ class HomeController extends Controller
 
         // $role = Role::findById('2');
 
-        // $permission = Permission::findById('4');
+        // $permission1 = Permission::findById('1');
+        // $permission2 = Permission::findById('2');
+        // $permission3 = Permission::findById('3');
 
-        // $role->givePermissionTo($permission);
+        // $role->givePermissionTo($permission1, $permission2, $permission3);
 
-
-        // auth()->user()->assignRole(['writer']);
+        //------Model has Role && Permissions-----//
+        // auth()->user()->assignRole(['user']);
+        
+        // auth()->user()->givePermissionTo([$permission1, $permission2, $permission3]);
 
         // auth()->user()->assignRole(['admin']);
 
