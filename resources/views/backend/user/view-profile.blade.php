@@ -49,10 +49,10 @@
                   <p class="text-muted text-center">{{ $user->address }}</p>
   
                   <table width="100%" class="table table-bordered">
-                      {{-- <tr>
-                          <td>Date</td>
-                          <td>{{ date('d-m-Y', strtotime($user->date)) }}</td>
-                      </tr> --}}
+                      <tr>
+                          <td>Name</td>
+                          <td>{{ $user->name }}</td>
+                      </tr>
                       <tr>
                           <td>Email</td>
                           <td>{{ $user->email }}</td>

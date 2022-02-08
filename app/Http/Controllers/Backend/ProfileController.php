@@ -25,6 +25,13 @@ class ProfileController extends Controller
 
     public function update(Request $request){
         $data = User::find(Auth::user()->id);
+
+        //Data Validation
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$data->id,
+        ]);
+
         $data->name = $request->name;
         $data->email = $request->email;
         
@@ -50,6 +57,12 @@ class ProfileController extends Controller
     public function passwordUpdate(Request $request){
         if(Auth::attempt(['id' => Auth::user()->id, 'password' => $request->current_password])){
 
+            //Data Validation
+            $this->validate($request, [
+                'current_password' => 'required',
+                'new_password' => 'required|min:6'
+            ]);
+            
             $user = User::find(Auth::user()->id);
             $user->password = bcrypt($request->new_password);
             $user->save();
