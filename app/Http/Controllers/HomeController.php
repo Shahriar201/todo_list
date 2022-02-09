@@ -36,7 +36,7 @@ class HomeController extends Controller
         // Permission::create(['name' => 'delete']);
 
         //-----Role has Permissions----//
-        // $role = Role::findById(2);
+        // $role = Role::findById(1);
 
         // $permission1 = Permission::findById(1);
         // $permission2 = Permission::findById(2);
@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         // $permission = Permission::create(['name' => 'edit post']);
 
-        // $role = Role::findById('2');
+        // $role = Role::findById('1');
 
         // $permission1 = Permission::findById('1');
         // $permission2 = Permission::findById('2');
@@ -61,7 +61,7 @@ class HomeController extends Controller
         // $role->givePermissionTo($permission1, $permission2, $permission3);
 
         //------Model has Role && Permissions-----//
-        // auth()->user()->assignRole(['user']);
+        // auth()->user()->assignRole(['admin']);
         
         // auth()->user()->givePermissionTo([$permission1, $permission2, $permission3]);
 

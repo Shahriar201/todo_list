@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
         //Make a user
         $user = new User();
-        $user->user_type = 'Super Admin';
+        // $user->role_id = '1';
         $user->name = 'Shahriar Islam';
         $user->email = 'shahriar@gmail.com';
         $user->email_verified_at = now();

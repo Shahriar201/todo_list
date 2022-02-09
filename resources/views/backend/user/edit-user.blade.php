@@ -51,17 +51,17 @@
 
                             <div class="form-row">
                               
-                              <div class="form-group col-md-4">
+                              {{-- <div class="form-group col-md-4">
                                 <label for="date">Date</label>
                                   <input type="date" name="date" value="{{ $editData->date }}" class="form-control">
-                              </div>
-                              
+                              </div> --}}
                               <div class="form-group col-md-4">
-                                    <label for="user_type">User Role</label>
-                                        <select name="user_type" id="user_type" class="form-control">
+                                    <label for="role">User Role</label>
+                                        <select name="role" id="role" class="form-control">
                                             <option value="">Select Role</option>
-                                            <option value="Super Admin" {{ ($editData->user_type=="Super Admin") ? "selected" : "" }}>Super Admin</option>
-                                            <option value="User" {{ ($editData->user_type=="User") ? "selected" : "" }}>User</option>
+                                            @foreach ($roles as $role)
+                                              <option value="{{ $role->name }}" {{ ($role->name == $editData->getRoleNames()->first()) ? 'selected' : null }}>{{ $role->name }}</option>
+                                            @endforeach
                                         </select>
                                </div>
 
@@ -81,7 +81,7 @@
                                     </font>
                                 </div>
 
-                                <div class="form-group col-md-6" style="padding-top:30px">
+                                <div class="form-group col-md-6">
                                     <input type="submit" value="Update" class="btn btn-primary">
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
           name: {
             required: true,
           },
-          user_type: {
+          role: {
             required: true,
           },
           email: {
@@ -135,7 +135,7 @@
           name: {
             required: "Please enter username"
           },
-          user_type: {
+          role: {
             required: "Please select user type"
           },
           email: {

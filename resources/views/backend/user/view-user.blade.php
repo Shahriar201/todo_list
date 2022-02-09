@@ -62,7 +62,6 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <th>SL.</th>
-                                    <th>Date</th>
                                     <th>Role</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -76,8 +75,14 @@
                                 @foreach ($allData as $key => $user)
                                     <tr class="{{ $user->id }}">
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($user->date)) }}</td>
-                                        <td>{{ $user->user_type }}</td>
+                                        {{-- <td>{{ date('d-m-Y', strtotime($user->date)) }}</td> --}}
+                                        <td>
+                                            @if (!empty($user->getRoleNames()))
+                                                @foreach ($user->getRoleNames() as $role)
+                                                    {{ $role }}
+                                                @endforeach                                                
+                                            @endif
+                                        </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>

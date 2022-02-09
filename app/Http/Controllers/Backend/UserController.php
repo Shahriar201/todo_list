@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\User;
 
 class UserController extends Controller
@@ -16,36 +17,37 @@ class UserController extends Controller
     }
 
     public function add(){
+        $data['roles'] = Role::all();
 
-        return view('backend.user.add-user');
+        return view('backend.user.add-user', $data);
     }
 
     public function store(Request $request){
 
         // data validation
         $this->validate($request,[
-            'date'          => 'required|date',
-            'user_type'     => 'required',
+            // 'date'          => 'required|date',
+            'role'          => 'required|exists:roles,name',
             'name'          => 'required',
             'email'         => 'required|email|unique:users,email',
             'password'      => 'required|min:6',
         ]);
 
         $data = new User();
-        $data->date = date('Y-m-d', strtotime($request->date));
-        $data->user_type = $request->user_type;
+        // $data->date = date('Y-m-d', strtotime($request->date));
         $data->name = $request->name;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->save();
-
+        $data->assignRole($request->role);
         return redirect()->route('users.view')->with('success', 'Data inserted successfully');
     }
 
     public function edit($id){
         $editData = User::find($id);
+        $roles = Role::all();
 
-        return view('backend.user.edit-user', compact('editData'));
+        return view('backend.user.edit-user', compact('editData', 'roles'));
     }
 
     public function update(Request $request, $id){
@@ -53,17 +55,16 @@ class UserController extends Controller
         $data = User::findOrFail($id);
 
         $this->validate($request,[
-            'date'          => 'required|date',
-            'user_type'     => 'required',
+            'role'       => 'required|exists:roles,name',
             'name'          => 'required',
             'email'         => 'required|email|unique:users,email,'.$data->id,
         ]);
 
-        $data->date = date('Y-m-d', strtotime($request->date));
-        $data->user_type = $request->user_type;
+        // $data->date = date('Y-m-d', strtotime($request->date));
         $data->name = $request->name;
         $data->email = $request->email;
         $data->save();
+        $data->assignRole($request->role);
 
         return redirect()->route('users.view')->with('success', 'Data updated successfully');
 
@@ -72,6 +73,7 @@ class UserController extends Controller
     public function delete(Request $request){
         $user = User::find($request->id);
         $user->delete();
+        $user->removeRole($request->role);
 
         return redirect()->route('users.view')->with('success', 'Data deleted successfully');
     }

@@ -50,25 +50,26 @@
                             @csrf
 
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                {{-- <div class="form-group col-md-4">
                                     <label for="date">Date</label>
                                         <input type="date" name="date" class="form-control">
                                         
                                         <font style="color: red">
                                           {{ ($errors->has('date')) ? ($errors->first('date')) : '' }}
                                         </font>
-                               </div>
+                               </div> --}}
 
                                <div class="form-group col-md-4">
-                                    <label for="user_type">User Role</label>
-                                        <select name="user_type" id="user_type" class="form-control">
+                                    <label for="role">User Role</label>
+                                        <select name="role" id="role" class="form-control">
                                             <option value="">Select Role</option>
-                                            <option value="Super Admin">Super Admin</option>
-                                            <option value="User">User</option>
+                                            @foreach ($roles as $role)
+                                              <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
                                         </select>
 
                                         <font style="color: red">
-                                          {{ ($errors->has('user_type')) ? ($errors->first('user_type')) : '' }}
+                                          {{ ($errors->has('role_id')) ? ($errors->first('role_id')) : '' }}
                                         </font>
                                </div>
 
@@ -131,13 +132,10 @@
 
       $('#myForm').validate({
         rules: {
-          date: {
-            required: true,
-          },
           name: {
             required: true,
           },
-          user_type: {
+          role_id: {
             required: true,
           },
           email: {
@@ -157,7 +155,7 @@
           name: {
             required: "Please enter username"
           },
-          user_type: {
+          role_id: {
             required: "Please select user type"
           },
           email: {
