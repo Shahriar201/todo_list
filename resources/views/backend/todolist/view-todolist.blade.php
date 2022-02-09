@@ -56,14 +56,6 @@
                                 @csrf
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="date">Date</label>
-                                            <input type="date" name="date" value="{{ @$editData->date }}" class="form-control form-control-sm">
-                                            
-                                            <font style="color: red">
-                                            {{ ($errors->has('date')) ? ($errors->first('date')) : '' }}
-                                            </font>
-                                </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="name">Name</label>
@@ -97,7 +89,7 @@
                                         </font>
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6" style="padding-top: 30px;">
                                         <input type="submit" value="{{ (@$editData) ? 'Update' : 'Submit' }}" class="btn btn-primary btn-sm">
                                     </div>
                                 </div>
@@ -130,10 +122,9 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <table class="table table-bordered table-responsive">
+                            <table class="table table-bordered">
                                 <tr>
                                     <th>SL.</th>
-                                    <th>Date</th>
                                     <th>Name</th>
                                     <th>Department</th>
                                     <th>Email</th>
@@ -147,7 +138,7 @@
                                 @foreach ($allData as $key => $todolist)
                                     <tr class="{{ $todolist->id }}">
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ date('d-m-Y h:i:s', strtotime($todolist->date)) }}</td>
+                                        {{-- <td>{{ date('d-m-Y h:i:s', strtotime($todolist->date)) }}</td> --}}
                                         <td>{{ $todolist->name }}</td>
                                         <td>{{ $todolist->department }}</td>
                                         <td>{{ $todolist->email }}</td>
@@ -194,9 +185,6 @@
 
       $('#myForm').validate({
         rules: {
-          date: {
-            required: true,
-          },
           name: {
             required: true,
           },

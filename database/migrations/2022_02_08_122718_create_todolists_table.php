@@ -15,7 +15,7 @@ class CreateTodolistsTable extends Migration
     {
         Schema::create('todolists', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            // $table->date('date');
             $table->string('name');
             $table->string('department')->nullable();
             $table->string('email')->unique();
