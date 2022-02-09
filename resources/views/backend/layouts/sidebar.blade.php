@@ -7,7 +7,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-        @can('create', 'edit', 'delete')
+        @can('delete')
             <li class="nav-item has-treeview {{ ($prefix=='/users')?'menu-open':'' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>

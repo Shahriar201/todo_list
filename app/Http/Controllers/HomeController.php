@@ -36,13 +36,13 @@ class HomeController extends Controller
         // Permission::create(['name' => 'delete']);
 
         //-----Role has Permissions----//
-        // $role = Role::findById(1);
+        // $role = Role::findById(2);
 
         // $permission1 = Permission::findById(1);
         // $permission2 = Permission::findById(2);
         // $permission3 = Permission::findById(3);
 
-        // $role->givePermissionTo($permission1);
+        // $role->givePermissionTo($permission1, $permission2);
 
         // $role->givePermissionTo([$permission1, $permission2, $permission3]);
 
