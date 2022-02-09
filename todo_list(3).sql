@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 05, 2022 at 05:34 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Host: localhost:3306
+-- Generation Time: Feb 09, 2022 at 04:51 AM
+-- Server version: 5.7.33
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -53,10 +53,11 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(5, '2014_10_12_000000_create_users_table', 1),
-(6, '2014_10_12_100000_create_password_resets_table', 1),
-(7, '2019_08_19_000000_create_failed_jobs_table', 1),
-(8, '2022_02_03_124735_create_permission_tables', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2022_02_03_124735_create_permission_tables', 1),
+(5, '2022_02_08_122718_create_todolists_table', 2);
 
 -- --------------------------------------------------------
 
@@ -77,9 +78,7 @@ CREATE TABLE `model_has_permissions` (
 INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
 (2, 'App\\User', 1),
-(2, 'App\\User', 2),
-(3, 'App\\User', 1),
-(3, 'App\\User', 3);
+(3, 'App\\User', 1);
 
 -- --------------------------------------------------------
 
@@ -99,11 +98,8 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
-(1, 'App\\User', 2),
-(1, 'App\\User', 3),
 (2, 'App\\User', 1),
-(2, 'App\\User', 2),
-(3, 'App\\User', 1);
+(2, 'App\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -136,9 +132,9 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'create', 'web', '2022-02-04 05:23:52', '2022-02-04 05:23:52'),
-(2, 'edit', 'web', '2022-02-04 05:23:52', '2022-02-04 05:23:52'),
-(3, 'delete', 'web', '2022-02-04 05:23:52', '2022-02-04 05:23:52');
+(1, 'create', 'web', '2022-02-08 02:59:20', '2022-02-08 02:59:20'),
+(2, 'edit', 'web', '2022-02-08 02:59:20', '2022-02-08 02:59:20'),
+(3, 'delete', 'web', '2022-02-08 02:59:20', '2022-02-08 02:59:20');
 
 -- --------------------------------------------------------
 
@@ -159,9 +155,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'writer', 'web', '2022-02-04 05:23:18', '2022-02-04 05:23:18'),
-(2, 'editor', 'web', '2022-02-04 05:23:18', '2022-02-04 05:23:18'),
-(3, 'admin', 'web', '2022-02-04 05:23:18', '2022-02-04 05:23:18');
+(1, 'admin', 'web', '2022-02-08 02:57:50', '2022-02-08 02:57:50'),
+(2, 'user', 'web', '2022-02-08 02:57:50', '2022-02-08 02:57:50');
 
 -- --------------------------------------------------------
 
@@ -180,10 +175,36 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
-(1, 3),
-(2, 2),
-(2, 3),
-(3, 3);
+(2, 1),
+(3, 1),
+(1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `todolists`
+--
+
+CREATE TABLE `todolists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `todolists`
+--
+
+INSERT INTO `todolists` (`id`, `date`, `name`, `department`, `email`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '2022-02-08', 'Shahriar', 'Engineering', 'shahriar@gmail.com', NULL, 1, '2022-02-08 07:39:44', '2022-02-08 08:40:09'),
+(3, '2022-02-10', 'Alex', 'HR', 'alex@gmail.com', 2, NULL, '2022-02-08 12:00:02', '2022-02-08 12:00:02'),
+(4, '2022-02-10', 'Arthur', 'Engineering', 'arthur@gmail.com', 1, 1, '2022-02-08 12:02:30', '2022-02-08 12:02:41');
 
 -- --------------------------------------------------------
 
@@ -199,7 +220,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
   `date` date DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -211,10 +232,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_type`, `name`, `email`, `email_verified_at`, `password`, `image`, `status`, `date`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'Shahriar Islam', 'shahriar@gmail.com', NULL, '$2y$10$VRar2tGkrquoqPRAYX21Ku8AbWNYeIo5xbAwfJ/R3aRfJ586TQosq', NULL, 1, '2022-02-04', NULL, '2022-02-04 03:46:35', '2022-02-04 03:47:13'),
-(2, 'User', 'Shawon', 'shawon@gmail.com', NULL, '$2y$10$DhgDqNyF.UF5WxbqrhNiFOhRzFOsm4q6b2qJ2rxKz/aKT0pNqZeZm', NULL, 1, '2022-02-04', NULL, '2022-02-04 03:49:22', '2022-02-04 06:53:05'),
-(3, 'User', 'Rahul', 'rahul@gmail.com', NULL, '$2y$10$hsty8ygEQb/8NK.xXX/x9.fy5ru57P6Ti.zERFDznQRsgJCY3BKN6', NULL, 1, '2022-02-04', NULL, '2022-02-04 03:50:50', '2022-02-04 03:50:50'),
-(4, 'User', 'Alex', 'alex@gmail.com', NULL, '$2y$10$lVYbcuR5KHhMDbbc4CG8hux7WSkgOiQiv4V/OS8.0jEqKVYLdStn6', NULL, 1, '2022-02-05', NULL, '2022-02-04 10:08:49', '2022-02-04 10:08:49');
+(1, 'Super Admin', 'Shahriar Islam', 'shahriar@gmail.com', '2022-02-08 02:57:50', '$2y$10$X9oAgjfgikzWBsYrrHbcmesaT2HoxIneawQyrxS63mSfb3fTaNcfi', '202202090446IMG_3376_Easy-Resize.com.jpg', 1, '2022-02-08', NULL, '2022-02-08 02:57:50', '2022-02-08 22:46:48'),
+(2, 'User', 'Shawon', 'shawon@gmail.com', NULL, '$2y$10$qF0pfz46O1EEM7CUcQLoNep/2TDJJFTEkptK/TcfS1NdDE73DeGui', NULL, 1, '2022-02-08', NULL, '2022-02-08 03:09:25', '2022-02-08 03:47:38');
 
 --
 -- Indexes for dumped tables
@@ -274,6 +293,13 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `todolists`
+--
+ALTER TABLE `todolists`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `todolists_email_unique` (`email`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -294,7 +320,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -306,13 +332,19 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `todolists`
+--
+ALTER TABLE `todolists`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -69,6 +69,9 @@
                                <div class="form-group col-md-4">
                                     <label for="image">Image</label>
                                     <input type="file" name="image" class="form-control" id="image">
+                                    <font style="color:red">
+                                      {{($errors->has('image'))?($errors->first('image')):''}}
+                                  </font>
                                 </div>
 
                                <div class="form-group col-md-2">
