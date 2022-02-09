@@ -12,12 +12,12 @@ class TodolistController extends Controller
     public function view() {
         $data['allData'] = Todolist::all();
 
-        return view('backend.todolist.view-todolist', $data);
+        return view('backend.layouts.home', $data);
     }
 
     public function add() {
         
-        return view('backend.todolist.view-todolist');
+        return view('backend.layouts.home');
     }
 
     public function store(Request $request) {
@@ -81,13 +81,13 @@ class TodolistController extends Controller
 
             $data['allData'] = Todolist::paginate(3);
 
-            return view('backend.todolist.view-todolist', $data);
+            return view('backend.layouts.home', $data);
             
         } else {
 
             $data['allData'] = Todolist::where('date', 'like', '%'.$request->search.'%')->paginate(3);
 
-            return view('backend.todolist.view-todolist', $data);
+            return view('backend.layouts.home', $data);
         }
     }
 }

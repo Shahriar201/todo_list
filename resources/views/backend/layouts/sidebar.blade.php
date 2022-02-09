@@ -70,7 +70,7 @@
         </li>
 
         {{-- Todo List menu --}}
-        @can('create', 'edit', 'delete')
+        {{-- @can('create', 'edit', 'delete')
             <li class="nav-item has-treeview {{ ($prefix=='/todolists')?'menu-open':'' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
@@ -81,14 +81,14 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('todolists.view') }}" class="nav-link {{ ($route=='todolists.view')?'active':'' }}">
+                        <a href="{{ route('home') }}" class="nav-link {{ ($route=='home')?'active':'' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View Todolist</p>
                         </a>
                     </li>              
                 </ul>
             </li>
-        @endcan
+        @endcan --}}
 
     </ul>
 </nav>

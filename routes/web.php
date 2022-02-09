@@ -19,7 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@view')->name('home');
+Route::get('/add', 'HomeController@add')->name('todolists.add');
+Route::post('/store', 'HomeController@store')->name('todolists.store');
+Route::get('/edit/{id}', 'HomeController@edit')->name('todolists.edit');
+Route::post('/update/{id}', 'HomeController@update')->name('todolists.update');
+Route::post('/delete', 'HomeController@delete')->name('todolists.delete');
+
+// Search route
+Route::get('/search', 'HomeController@search')->name('todolists.search');
 
 
 Route::group(['middleware' => 'auth'], function() {
@@ -69,19 +77,19 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     //TodoList route
-    Route::group(['middleware' => ['role:admin|user']], function() {
+    // Route::group(['middleware' => ['role:admin|user']], function() {
 
-        Route::prefix('todolists')->group(function() {
-            Route::get('/view', 'Backend\TodolistController@view')->name('todolists.view');
-            Route::get('/add', 'Backend\TodolistController@add')->name('todolists.add');
-            Route::post('/store', 'Backend\TodolistController@store')->name('todolists.store');
-            Route::get('/edit/{id}', 'Backend\TodolistController@edit')->name('todolists.edit');
-            Route::post('/update/{id}', 'Backend\TodolistController@update')->name('todolists.update');
-            Route::post('/delete', 'Backend\TodolistController@delete')->name('todolists.delete');
+    //     Route::prefix('todolists')->group(function() {
+    //         Route::get('/view', 'Backend\TodolistController@view')->name('todolists.view');
+    //         Route::get('/add', 'Backend\TodolistController@add')->name('todolists.add');
+    //         Route::post('/store', 'Backend\TodolistController@store')->name('todolists.store');
+    //         Route::get('/edit/{id}', 'Backend\TodolistController@edit')->name('todolists.edit');
+    //         Route::post('/update/{id}', 'Backend\TodolistController@update')->name('todolists.update');
+    //         Route::post('/delete', 'Backend\TodolistController@delete')->name('todolists.delete');
 
-            // Search route
-            Route::get('/search', 'Backend\TodolistController@search')->name('users.search');
-        });
-    });
+    //         // Search route
+    //         Route::get('/search', 'Backend\TodolistController@search')->name('users.search');
+    //     });
+    // });
 
 });
