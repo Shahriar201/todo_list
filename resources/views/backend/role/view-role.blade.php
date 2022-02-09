@@ -40,7 +40,7 @@
                             <h3>Role List
                                 
                                 {{-- Set role for the user --}}
-                                @role('writer')
+                                @role('admin')
                                     <a class="btn btn-success float-right btn-sm" href="{{ route('roles.add') }}">
                                         <i class="fa fa-plus-circle"></i>Add Role</a>
                                 @endrole

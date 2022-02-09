@@ -40,7 +40,7 @@
                             <h3>Permissions List
                                 
                                 {{-- Set role for the user --}}
-                                @role('writer')
+                                @role('admin')
                                     <a class="btn btn-success float-right btn-sm" href="{{ route('permissions.add') }}">
                                         <i class="fa fa-plus-circle"></i>Add Permisson</a>
                                 @endrole

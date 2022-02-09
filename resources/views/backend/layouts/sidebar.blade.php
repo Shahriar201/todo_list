@@ -70,7 +70,7 @@
         </li>
 
         {{-- Todo List menu --}}
-        @role('user')
+        @role('admin|user')
             <li class="nav-item has-treeview {{ ($prefix=='/todolists')?'menu-open':'' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
