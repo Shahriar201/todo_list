@@ -75,7 +75,7 @@ class HomeController extends Controller
     }
 
     public function view() {
-        $data['allData'] = Todolist::all();
+        $data['allData'] = Todolist::where('created_by', Auth::user()->id)->get();
 
         return view('backend.layouts.home', $data);
     }
@@ -142,13 +142,13 @@ class HomeController extends Controller
     {
         if (empty($request)) {
 
-            $data['allData'] = Todolist::paginate(3);
+            $data['allData'] = Todolist::where('created_by', Auth::user()->id)->get();
 
             return view('backend.layouts.home', $data);
             
         } else {
 
-            $data['allData'] = Todolist::where('created_at', 'like', '%'.$request->search.'%')->paginate(3);
+            $data['allData'] = Todolist::where('created_at', 'like', '%'.$request->search.'%')->where('created_by', Auth::user()->id)->paginate(3);
 
             return view('backend.layouts.home', $data);
         }
