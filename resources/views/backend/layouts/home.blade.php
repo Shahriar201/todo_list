@@ -220,7 +220,7 @@
                             <form action="{{ route('todolists.search') }}" method="">
                                 @csrf
 
-                                <input type="date" name="search" placeholder="Key word">
+                                <input type="text" id="date" class="date" name="search" placeholder="01/01/2022">
                                 <input type="submit" value="Search">
                             </form>
 

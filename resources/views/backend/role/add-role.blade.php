@@ -144,10 +144,10 @@
         }
       });
 
-    //   if($editData == true){
-    //     alert("It's working fine");
-    //     $('#permission').val({{ $editData->permissions()->pluck('name') }}).change();
-    //   }
+      if({{ $editData == false }}){
+        alert("It's working fine");
+        $('#permission').val({{ $editData->permissions()->pluck('name') }}).change();
+      }
     });
     </script>
 @endpush

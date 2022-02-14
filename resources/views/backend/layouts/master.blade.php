@@ -54,6 +54,13 @@
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+    {{-- Jquery datepicker --}}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
     {{-- Sweet alert --}}
     <script src="{{ asset('public/backend') }}/sweetalert/sweetalert.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ asset('public/backend') }}/sweetalert/sweetalert.css" type="text/css">
@@ -416,6 +423,16 @@
         $(function () {
             $('.select2').select2();
         })
+    </script>
+
+    {{-- Jquery datepicker --}}
+    <script>
+        $(function() {
+        $(".date").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
     </script>
 
     @yield('script')
