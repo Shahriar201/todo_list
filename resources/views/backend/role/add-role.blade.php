@@ -61,7 +61,22 @@
                                 
                                 <div class="form-group col-md-6">
                                     <label for="name">Name</label>
-                                    <input type="text" name="name" class="form-control form-control-sm" value="{{ @$editData->name }}">
+                                    <input type="text" name="name" class="form-control" value="{{ @$editData->name }}">
+                                    
+                                    <font style="color:red">
+                                      {{($errors->has('name')) ? ($errors->first('name')) : ''}}
+                                  </font>
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label for="permission">Permissions</label>
+                                    {{-- <input type="text" name="permission" class="form-control form-control-sm" value=""> --}}
+                                    <select name="permission[]" id="permission" class="form-control select2" multiple>
+                                        <option value="">Select Permissions</option>
+                                        @foreach ($permissions as $permission)
+                                            <option value="{{ $permission->name }}">{{ $permission->name }}</option>
+                                        @endforeach
+                                    </select>
                                     
                                     <font style="color:red">
                                       {{($errors->has('name')) ? ($errors->first('name')) : ''}}
@@ -92,16 +107,22 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <!-- Page specific script -->
+{{-- @dd($editData->toArray()); --}}
+@endsection
+
+@push('script')
 <script>
     $(function () {
-
+       
       $('#myForm').validate({
         rules: {
           name: {
             required: true,
           },
+          permission: {
+              required: true,
+          }
         },
         // messages: {
         //   name: {
@@ -122,7 +143,11 @@
           $(element).removeClass('is-invalid');
         }
       });
+
+    //   if($editData == true){
+    //     alert("It's working fine");
+    //     $('#permission').val({{ $editData->permissions()->pluck('name') }}).change();
+    //   }
     });
     </script>
-
-@endsection
+@endpush

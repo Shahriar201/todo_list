@@ -394,6 +394,8 @@
 
     </script>
 
+    @stack('script')
+
     {{-- Real time image with JS --}}
     <script type="text/javascript">
         $(document).ready(function() {
@@ -416,6 +418,7 @@
         })
     </script>
 
+    @yield('script')
 </body>
 
 </html>

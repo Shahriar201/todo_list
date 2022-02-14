@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\User;
+use DB;
 
 class RoleController extends Controller
 {
@@ -14,38 +17,67 @@ class RoleController extends Controller
     }
 
     public function addRole() {
-        return view('backend.role.add-role');
+        $data['permissions'] = Permission::all();
+
+        return view('backend.role.add-role', $data);
     }
 
     public function storeRole(Request $request) {
+        DB::beginTransaction();
 
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name'
-        ]);
+        try{
+            $this->validate($request, [
+                'name' => 'required|unique:roles,name',
+                'permission' => 'required|exists:permissions,name'
+            ]);
+    
+            $data = new Role();
+            $data->name = $request->name;
+            $data->guard_name = 'web';
+            $data->save();
 
-        $data = new Role();
-        $data->name = $request->name;
-        $data->guard_name = 'web';
-        $data->save();
+            $data->givePermissionTo($request->permission);
+
+            DB::commit();
+
+        } catch(Exception $e) {
+            DB::rollback();
+        }
 
         return redirect()->route('roles.view')->with('success', 'Data inserted successfully');
     }
 
     public function editRole($id) {
+        $permissions = Permission::all();
+
         $editData = Role::find($id);
 
-        return view('backend.role.add-role', compact('editData'));
+        return view('backend.role.add-role', compact('editData', 'permissions'));
     }
 
     public function updateRole(Request $request, $id) {
-        $data = Role::findOrFail($id);
+        DB::beginTransaction();
 
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name,'.$data->id,
-        ]);
+        try{
+            $data = Role::findOrFail($id);
 
-        $data->name = $request->name;
-        $data->save();
+            $this->validate($request, [
+                'name' => 'required|unique:roles,name,'.$data->id,
+                'permission' => 'required|exists:permissions,name'
+            ]);
+
+            $data->name = $request->name;
+            $data->guard_name = 'web';
+            $data->save();
+
+            $data->syncPermissions($request->permission);
+
+            DB::commit();
+
+        } catch(Exception $e) {
+            DB::rollback();
+        }
+        
 
         return redirect()->route('roles.view')->with('success', 'Data Updated Successfully');
     }

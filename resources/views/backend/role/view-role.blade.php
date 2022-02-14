@@ -55,6 +55,7 @@
                                 <tr>
                                     <th>SL.</th>
                                     <th>Name</th>
+                                    <th>Permissions</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -62,6 +63,13 @@
                                     <tr class="{{ $role->id }}">
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $role->name }}</td>
+                                        <td>
+                                            @if (!empty($role->getPermissionNames()))
+                                                @foreach ($role->getPermissionNames() as $permission)
+                                                    {{ $permission }}
+                                                @endforeach
+                                            @endif
+                                        </td>
                                         <td>
                                             <a title="Edit" id="edit" class="btn btn-primary btn-sm" href="{{ route('roles.edit', $role->id) }}"> <i class="fa fa-edit"></i>
                                             </a>             

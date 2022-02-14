@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Todolist;
+use App\User;
 use Auth;
 
 class HomeController extends Controller
@@ -75,13 +76,18 @@ class HomeController extends Controller
     }
 
     public function view() {
-        $data['allData'] = Todolist::where('created_by', Auth::user()->id)->get();
+
+        if (Auth::user()->hasRole('admin')) {
+            $data['allData'] = Todolist::get();
+        } else {
+            $data['allData'] = Todolist::where('created_by', Auth::user()->id)->get();
+        }
 
         return view('backend.layouts.home', $data);
     }
 
     public function add() {
-        dd('Ok');
+        
         return view('backend.layouts.home');
     }
 
