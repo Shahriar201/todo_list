@@ -64,7 +64,7 @@ class UserController extends Controller
         $data->name = $request->name;
         $data->email = $request->email;
         $data->save();
-        $data->assignRole($request->role);
+        $data->syncRoles($request->role);
 
         return redirect()->route('users.view')->with('success', 'Data updated successfully');
 

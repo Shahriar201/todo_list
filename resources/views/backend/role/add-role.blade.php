@@ -74,7 +74,7 @@
                                     <select name="permission[]" id="permission" class="form-control select2" multiple>
                                         <option value="">Select Permissions</option>
                                         @foreach ($permissions as $permission)
-                                            <option value="{{ $permission->name }}">{{ $permission->name }}</option>
+                                            <option  value="{{ $permission->name }}">{{ $permission->name }}</option>
                                         @endforeach
                                     </select>
                                     
@@ -109,9 +109,20 @@
 <!-- /.content-wrapper -->
 <!-- Page specific script -->
 {{-- @dd($editData->toArray()); --}}
+
 @endsection
 
 @push('script')
+
+<script> 
+        $( document ).ready(function() {
+            var tem = [<?php echo $temp ?>];
+            $('#permission').val(tem).trigger('change');
+});
+        
+       
+</script>
+
 <script>
     $(function () {
        
@@ -144,10 +155,8 @@
         }
       });
 
-      if({{ $editData == false }}){
-        alert("It's working fine");
-        $('#permission').val({{ $editData->permissions()->pluck('name') }}).change();
-      }
+    //   console.log('{{ @$editData->id }}');
     });
+
     </script>
 @endpush

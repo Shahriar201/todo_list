@@ -18,7 +18,7 @@ class RoleController extends Controller
 
     public function addRole() {
         $data['permissions'] = Permission::all();
-
+        $data['editData'] = null;
         return view('backend.role.add-role', $data);
     }
 
@@ -51,8 +51,12 @@ class RoleController extends Controller
         $permissions = Permission::all();
 
         $editData = Role::find($id);
+        
+        $get_all_permission_name = $editData->permissions()->pluck('name')->toArray();
+        //$temp = implode(', ', ($get_all_permission_name));
+        $temp = "'" . implode ( "', '", $get_all_permission_name ) . "'";
 
-        return view('backend.role.add-role', compact('editData', 'permissions'));
+        return view('backend.role.add-role', compact('editData', 'permissions', 'get_all_permission_name','temp'));
     }
 
     public function updateRole(Request $request, $id) {
