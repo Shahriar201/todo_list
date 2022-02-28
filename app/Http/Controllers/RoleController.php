@@ -55,7 +55,7 @@ class RoleController extends Controller
         $get_all_permission_name = $editData->permissions()->pluck('name')->toArray();
         //$temp = implode(', ', ($get_all_permission_name));
         $temp = "'" . implode ( "', '", $get_all_permission_name ) . "'";
-
+        
         return view('backend.role.add-role', compact('editData', 'permissions', 'get_all_permission_name','temp'));
     }
 

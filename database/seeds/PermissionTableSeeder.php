@@ -17,6 +17,8 @@ class PermissionTableSeeder extends Seeder
         foreach ($permissions as $key => $permission) {
             Permission::create(['name' => $permission]);
         }
+        
+        // auth()->user()->givePermissionTo([$permission]);
     }
 
     //php artisan db:seed --class=PermissionTableSeeder

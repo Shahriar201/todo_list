@@ -116,9 +116,9 @@
 
 <script> 
         $( document ).ready(function() {
-            var tem = [<?php echo $temp ?>];
+            var tem = [<?php echo isset($temp) ? $temp : '' ?>];
             $('#permission').val(tem).trigger('change');
-});
+    });
         
        
 </script>

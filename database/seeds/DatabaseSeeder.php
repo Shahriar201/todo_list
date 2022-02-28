@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         //Create default role
         $role = Role::create(['name' => 'admin']);
         $role = Role::create(['name' => 'user']);
+
+        // auth()->user()->assignRole(['admin']);
     }
 }
